@@ -16,10 +16,15 @@ The only input will be the kml file.
 All other files will be created deleted altered and stored within the script. 
 The output will have a user-friendly title and be easy to locate."""
 import Tkinter as tk
-import tkFileDialog, os
+import tkFileDialog, os, datetime
+def mod_date(filename):
+    return datetime.date.fromtimestamp(os.path.getmtime(filename))
 def toFeature():
     root = tk.Tk()
     root.withdraw()
     filePath = tkFileDialog.askopenfilename() #get file path
     fileName = os.path.basename(filePath) #get file name
     fileBase = os.path.splitext(fileName)[0] #get file name with no extension
+    surveyDate = mod_date(filePath).strftime('%m%d%Y')
+    newFileBase = fileBase + "_" + surveyDate
+    print newFileBase
