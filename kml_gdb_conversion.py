@@ -10,11 +10,11 @@ def get_info():
 
 arcpy.env.workspace = get_info()
 
-outLocation = "I:\\ARC\\WIP\\KevinWIP\\Data Collection\\GoogleEarthPro\\Processed"
+outLocation = r"E:\Data Collection\GoogleEarthPro\Processed"
 MasterGDB = 'SurveyTrees.gdb'
 MasterGDBLoc = os.path.join(outLocation, MasterGDB)
 
-arcpy.CreateFileGDB_management(outLocation, MasterGDB)
+##arcpy.CreateFileGDB_management(outLocation, MasterGDB)
 
 # Convert all KMZ and KML files found in the current workspace
 for kmz in arcpy.ListFiles('*.KM*'):
