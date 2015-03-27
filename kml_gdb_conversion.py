@@ -8,9 +8,12 @@ Created on Thu Mar 26 22:47:32 2015
 """This series of scripts will process data using the following workflow outline:
 1. Convert tree points from KML to feature class
 2. Add spatial attributes and remove extraneous attributes
-3. Tranform from WGS1984 to Massachusetts Mainland Stateplane FIPS meters"""
+3. Clean up intermediate workspaces, retaining the original kmz files,
+The output feature classes, feature classes for spatial joining and the
+master tree feature class"""
 
-"""Script for batch processing KML files to GDB feature classes"""
+#Script 1
+"""Script for batch processing KML files to GDB feature class"""
 
 import arcpy, os
 
