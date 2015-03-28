@@ -18,7 +18,7 @@ def main():
     arcpy.AddField_management(x, "Species", "TEXT", "", "", "255", "Species", "", "", "")
     arcpy.AddField_management(x, "DBH", "SHORT", "", "", "", "DBH", "", "", "")
     arcpy.AddField_management(x, "Survey_Date", "DATE", "", "", "", "Survey_Date", "","","")
-    arcpy.CalculateField_management(x,"DBH","int( !PopupInfo!)","PYTHON_9.3","#")
+    arcpy.CalculateField_management(x,"DBH","[PopupInfo]","VB","#")
     arcpy.CalculateField_management(x,"Species","str( !Name!)","PYTHON_9.3","#")
     fieldNames = [f.name for f in arcpy.ListFields(x)]
     finalFields = ['OBJECTID','Shape', 'Species', 'DBH', 'Survey_Date']

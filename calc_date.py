@@ -2,7 +2,7 @@
 """
 Created on Fri Mar 27 00:29:25 2015
 
-@author: Kevin
+@author: Kevin JY Davis
 """
 #Script 5
 """Script that calculates the survey date of trees based on the last modification
