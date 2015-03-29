@@ -15,15 +15,16 @@ def main():
   keep = ['UnitBoundaries_112913','WORTaxPar', 'Template']
   ftc = [f for f in arcpy.ListFeatureClasses() if f not in keep]
   for x in ftc:
-    arcpy.AddField_management(x, "Species", "TEXT", "", "", "255", "Species", "", "", "")
-    arcpy.AddField_management(x, "DBH", "SHORT", "", "", "", "DBH", "", "", "")
-    arcpy.AddField_management(x, "Survey_Date", "DATE", "", "", "", "Survey_Date", "","","")
-    arcpy.CalculateField_management(x,"DBH","[PopupInfo]","VB","#")
-    arcpy.CalculateField_management(x,"Species","str( !Name!)","PYTHON_9.3","#")
-    fieldNames = [f.name for f in arcpy.ListFields(x)]
+    ftcPath = os.path.join(arcpy.env.workspace,x)
+    arcpy.AddField_management(ftcPath, "Species", "TEXT", "", "", "255", "Species", "", "", "")
+    arcpy.AddField_management(ftcPath, "DBH", "SHORT", "", "", "", "DBH", "", "", "")
+    arcpy.AddField_management(ftcPath, "Survey_Date", "DATE", "", "", "", "Survey_Date", "","","")
+    arcpy.CalculateField_management(ftcPath,"DBH","[PopupInfo]","VB","#")
+    arcpy.CalculateField_management(ftcPath,"Species","str( !Name!)","PYTHON_9.3","#")
+    fieldNames = [f.name for f in arcpy.ListFields(ftcPath)]
     finalFields = ['OBJECTID','Shape', 'Species', 'DBH', 'Survey_Date']
     dropFields = [z for z in fieldNames if z not in finalFields]
-    arcpy.DeleteField_management(x, dropFields)
+    arcpy.DeleteField_management(ftcPath, dropFields)
   return
 if __name__ == '__main__':
   main()

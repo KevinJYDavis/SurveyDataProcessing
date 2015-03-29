@@ -15,9 +15,10 @@ def main():
     azu = 'UnitBoundaries_112913'
     ftc = [f for f in arcpy.ListFeatureClasses() if f not in keep]
     for x in ftc:
+        ftcPath = os.path.join(arcpy.env.workspace,x)
         azuOut = x + "_A"
         joinOut = os.path.join(path, azuOut)
-        arcpy.SpatialJoin_analysis(x,azu,joinOut,
+        arcpy.SpatialJoin_analysis(ftcPath,azu,joinOut,
                                    "JOIN_ONE_TO_ONE","KEEP_ALL",
                                """Species "Species" true true false 255 Text 0 0 ,First,"""
                                """#,E:/Data Collection/ProcessedSurvey/SurveyTrees.gdb/Template,Species,-1,-1;DBH "DBH" true"""

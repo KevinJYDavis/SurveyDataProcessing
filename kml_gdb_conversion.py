@@ -26,7 +26,8 @@ def main():
   def toKML(x,y):
     arcpy.KMLToLayer_conversion(x,y)
     return
-  
+
+  arcpy.env.overwriteOutput = True
   arcpy.env.workspace = r"E:\Data Collection\UnProcessedSurvey"
   outLocation = r"E:\Data Collection\ProcessedSurvey"
   MasterGDB = "SurveyTrees.gdb"
@@ -49,7 +50,8 @@ def main():
     featureClasses = arcpy.ListFeatureClasses('*', '', 'Placemarks')
     for fc in featureClasses:   
       fcCopy = fgdb + os.sep + 'Placemarks' + os.sep + fc    
-      featClass(fcCopy, MasterGDBLoc, fgdb[fgdb.rfind(os.sep)+1:-4])        
+      featClass(fcCopy, MasterGDBLoc, fgdb[fgdb.rfind(os.sep)+1:-4])
+  del wks, fgdb, fc
   return
 if __name__ == '__main__':
   main()

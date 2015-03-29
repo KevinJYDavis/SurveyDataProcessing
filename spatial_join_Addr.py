@@ -15,9 +15,10 @@ def main():
     keep = [i for i in arcpy.ListFeatureClasses() if i[-2:] != '_A']
     ftc = [f for f in arcpy.ListFeatureClasses() if f not in keep]
     for x in ftc:
+        ftcPath = os.path.join(arcpy.env.workspace,x)
         addrOut = x + "A"
         joinOut = os.path.join(path, addrOut)
-        arcpy.SpatialJoin_analysis(x, addr, joinOut,
+        arcpy.SpatialJoin_analysis(ftcPath, addr, joinOut,
                                    "JOIN_ONE_TO_ONE", "KEEP_ALL",
                                    """Species "Species" true true false 255 Text 0 0 ,First,#,E:/Data Collection/ProcessedSurvey/SurveyTrees.gdb/"""
                                    """Template,Species,-1,-1;DBH "DBH" true true false 4 Long 0 0 ,First,#,E:/Data Collection/"""

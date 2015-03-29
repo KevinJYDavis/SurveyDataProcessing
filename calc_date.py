@@ -29,9 +29,10 @@ def main():
   keep = [i for i in arcpy.ListFeatureClasses() if i[-3:] != '_AA']
   ftc = [f for f in arcpy.ListFeatureClasses() if f not in keep]
   for x in ftc:
+    ftcPath = os.path.join(arcpy.env.workspace,x)
     base = x[:-3]
     getSurveyDate = surveyDict[base] #Find the survey date associated with the base file name
-    arcpy.CalculateField_management(x, "Survey_Date","'"  + str(getSurveyDate) + "'", "PYTHON_9.3", "#")
+    arcpy.CalculateField_management(ftcPath, "Survey_Date","'"  + str(getSurveyDate) + "'", "PYTHON_9.3", "#")
   return
 if __name__ == '__main__':
   main()
